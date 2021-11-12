@@ -4,7 +4,7 @@ const hobbit = {
     language: 'English',
     genre: 'Fiction',
     pages: 400,
-    about: 'The classic bestseller behind this year\'s biggest movie, this film tie-in edition features the complete story of Bilbo Baggins\' adventures in Middle-earth as shown in the film trilogy, with a striking cover image from Peter Jackson\'s film adaptation and drawings and maps by J.R.R. Tolkien.',
+    description: 'The classic bestseller behind this year\'s biggest movie, this film tie-in edition features the complete story of Bilbo Baggins\' adventures in Middle-earth as shown in the film trilogy, with a striking cover image from Peter Jackson\'s film adaptation and drawings and maps by J.R.R. Tolkien.',
     completion: false
 }
 
@@ -14,26 +14,51 @@ const anarchy = {
     language: 'English',
     genre: 'History',
     pages: 576,
-    about: "\'Dalrymple is a superb historian with a visceral understanding of India . A book of beauty\' - Gerard DeGroot",
+    description: "\'Dalrymple is a superb historian with a visceral understanding of India . A book of beauty\' - Gerard DeGroot",
     completion: false
 }
 
 let cardsContainer = document.querySelector('.cardsContainer');
 let myLibrary = [hobbit, anarchy];
 
-function createBook(name, author, language, genre, pages, about, completion) {
+function createBook(name, author, language, genre, pages, description, completion) {
     this.name = name;
     this.author = author;
     this.language = language;
     this.genre = genre;
     this.pages = pages;
-    this.about = about;
-    this.completion = '';
+    this.description = description;
+    this.completion = completion;
 }
 
 function displayBook(book, card) {
+    console.log(book.name);
     
-    console.log(card);
+    const h2 = document.createElement('h2');
+    h2.append(book.name);
+    card.appendChild(h2);
+
+    for (const key in book){
+        if(key !== 'completion' && key !== 'name') {
+            
+            const sub = document.createElement('div');
+            sub.classList.add('subheading');
+            const text = document.createTextNode(`${key}: `)
+            sub.append(text);
+            const content = document.createElement('span');
+            if (key === 'description') {
+                lineBreak = document.createElement('br');
+                sub.append(lineBreak);
+            }
+            content.append(`${book[key]}`);
+            sub.appendChild(content);
+            card.appendChild(sub);
+        }
+
+    }
+
+
+    
 }
 
 myLibrary.forEach(book => {
@@ -41,5 +66,11 @@ myLibrary.forEach(book => {
     card.classList.add('card');
     cardsContainer.appendChild(card);
     displayBook(book,card);
-    // console.log(card);
+    console.log(card);
 });
+
+const addBook = document.getElementById('addBook');
+const popUp = document.getElementById('popUp');
+
+
+addBook.addEventListener('click', () => popUp.style.display="block");
