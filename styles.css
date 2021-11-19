@@ -42,7 +42,7 @@ h1 {
     gap: 15px;
     word-wrap: break-word;
     width: 300px;
-    min-height: 350px;
+    /* min-height: 300px; */
     border: 1px solid goldenrod;
     box-shadow: 3px 3px 5px gray;
     border-radius: 10px;
@@ -50,12 +50,15 @@ h1 {
 }
 
 h2 {
+    display: flex;
+    justify-content: space-between;
     font-size: 25px;
     margin: 0;
     margin-bottom: 15px;
     padding: 15px;
     text-align: center;
     border-bottom: 1px solid black;
+    align-items: center;
 }
 
 .subheading {
@@ -77,4 +80,22 @@ span {
     left: 50%;
     border: 2px solid darkblue;
     background-color: white;
+}
+
+.read {
+    font-weight: normal;
+    font-size: medium;
+    text-transform:none;
+}
+
+.readYes {
+    display: inline;
+}
+
+.readNo {
+    display: inline;
+}
+
+.deleteBook {
+    margin-top: auto;
 }
