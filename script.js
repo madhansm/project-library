@@ -4,7 +4,6 @@ const hobbit = {
     language: 'English',
     genre: 'Fiction',
     pages: 400,
-    description: 'The classic bestseller behind this year\'s biggest movie, this film tie-in edition features the complete story of Bilbo Baggins\' adventures in Middle-earth as shown in the film trilogy, with a striking cover image from Peter Jackson\'s film adaptation and drawings and maps by J.R.R. Tolkien.',
     completion: false
 }
 
@@ -14,28 +13,30 @@ const anarchy = {
     language: 'English',
     genre: 'History',
     pages: 576,
-    description: "\'Dalrymple is a superb historian with a visceral understanding of India . A book of beauty\' - Gerard DeGroot",
     completion: true
 }
 
 let cardsContainer = document.querySelector('.cardsContainer');
-let myLibrary = [hobbit, anarchy];
+let myLibrary = [];
 
-function createBook(name, author, language, genre, pages, description, completion) {
+function createBook(name, author, language, genre, pages, completion) {
     this.name = name;
     this.author = author;
     this.language = language;
     this.genre = genre;
     this.pages = pages;
-    this.description = description;
     this.completion = completion;
 }
 
 
 
-function displayBook(book, card) {
+function displayBook(book) {
     console.log(book.name);
     
+    const card = document.createElement('div');
+    card.classList.add('card');
+    cardsContainer.appendChild(card);
+
     const h2 = document.createElement('h2');
     h2.append(book.name);
 
@@ -121,18 +122,47 @@ function changeToYes() {
 
 
 myLibrary.forEach(book => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    cardsContainer.appendChild(card);
-    displayBook(book,card);
-    console.log(card);
+    displayBook(book);
 });
 
 const addBook = document.getElementById('addBook');
 const popUp = document.getElementById('popUp');
 
+function makeEmpty() {
+    document.getElementById('name').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('language').value = '';
+    document.getElementById('genre').value = '';
+    document.getElementById('pages').value = '';
+}
 
-addBook.addEventListener('click', () => popUp.style.display="block");
 
-let readYesButtons = document.querySelectorAll('.readYes');
-let readNoButtons = document.querySelectorAll('.readNo');
+addBook.addEventListener('click', () => {
+    popUp.style.display="block";
+});
+
+    let formSubmit = document.getElementById('submit');
+    formSubmit.addEventListener('click', () => {
+        
+        let name = document.getElementById('name').value;
+        let author = document.getElementById('author').value;
+        let language = document.getElementById('language').value;
+        let genre = document.getElementById('genre').value;
+        let pages = document.getElementById('pages').value;
+        let completion = document.getElementById('completion').checked;
+        console.log(name);
+        if (name !== '' && author !== '' && language !== '' && genre !== '' && pages !== 0){
+            console.log('not empty');
+            let newBook = new createBook(name, author, language, genre, pages, completion);
+            myLibrary.push(newBook);
+            console.log(newBook);
+            popUp.style.display = "none";
+            displayBook(newBook);
+            makeEmpty();
+        } else {
+            alert('Fill all fields');
+        }
+        console.log(myLibrary);
+    });
+
+

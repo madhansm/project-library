@@ -59,6 +59,7 @@ h2 {
     text-align: center;
     border-bottom: 1px solid black;
     align-items: center;
+    word-break: break-word;
 }
 
 .subheading {
@@ -75,9 +76,9 @@ span {
 
 #popUp{
     display: none;
-    position:absolute;
-    top: 50%;
-    left: 50%;
+    position: fixed;
+    left: 40%;
+    top: 10%;
     border: 2px solid darkblue;
     background-color: white;
 }
@@ -86,14 +87,14 @@ span {
     font-weight: normal;
     font-size: medium;
     text-transform:none;
+    margin-left: 10px;
+    word-break: normal;
 }
 
-.readYes {
-    display: inline;
-}
-
+.readYes,
 .readNo {
     display: inline;
+    margin: 5px
 }
 
 .deleteBook {
