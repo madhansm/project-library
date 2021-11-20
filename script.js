@@ -152,6 +152,7 @@ function makeEmpty() {
 
 addBook.addEventListener('click', () => {
     popUp.style.display="block";
+    
 });
 
     let formSubmit = document.getElementById('submit');
@@ -179,4 +180,15 @@ addBook.addEventListener('click', () => {
         console.log(JSON.parse(localStorage.getItem('libraryArray')));
     });
 
+let popUpCancel = document.getElementById('popUpCancel');
+popUpCancel.addEventListener('click', () => {
+    popUp.style.display = 'none'
+    makeEmpty();
+})
 
+window.addEventListener('keydown', function(e) {
+    if (e.key == "Escape") {
+        popUp.style.display = 'none'
+        makeEmpty();
+    }
+  });
