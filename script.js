@@ -17,7 +17,6 @@ const anarchy = {
 }
 
 let cardsContainer = document.querySelector('.cardsContainer');
-let myLibrary = [];
 
 function createBook(name, author, language, genre, pages, completion) {
     this.name = name;
@@ -27,8 +26,6 @@ function createBook(name, author, language, genre, pages, completion) {
     this.pages = pages;
     this.completion = completion;
 }
-
-
 
 function displayBook(book) {
     console.log(book.name);
@@ -96,6 +93,7 @@ function displayBook(book) {
         buttonReadYes.style.display = "none";
         buttonReadYes.parentElement.querySelector('.readNo').style.display = "inline";
         book.completion = false;
+        localStorage.setItem('libraryArray', JSON.stringify(myLibrary));
 
     });
 
@@ -103,10 +101,20 @@ function displayBook(book) {
         buttonReadNo.style.display = "none";
         buttonReadNo.parentElement.querySelector('.readYes').style.display = "inline";
         book.completion = true;
-
+        localStorage.setItem('libraryArray', JSON.stringify(myLibrary));
     });
 
-    buttonDeleteBook.addEventListener('click', () => card.remove());
+    buttonDeleteBook.addEventListener('click', () => {
+        card.remove();
+        for(let i = 0; i < myLibrary.length; i++){
+            if(myLibrary[i] === book){
+                console.log(myLibrary);
+                myLibrary.splice(i,1);
+                console.log(myLibrary);
+                localStorage.setItem('libraryArray', JSON.stringify(myLibrary));
+            }    
+        };
+    });
 
 }
 
@@ -120,6 +128,11 @@ function changeToYes() {
     this.parentElement.querySelector('.readYes').style.display = "inline";
 }
 
+myLibrary = JSON.parse(localStorage.getItem('libraryArray'));
+if (myLibrary === null){
+    console.log('here');
+    myLibrary = [];
+}
 
 myLibrary.forEach(book => {
     displayBook(book);
@@ -155,6 +168,7 @@ addBook.addEventListener('click', () => {
             console.log('not empty');
             let newBook = new createBook(name, author, language, genre, pages, completion);
             myLibrary.push(newBook);
+            localStorage.setItem('libraryArray', JSON.stringify(myLibrary));
             console.log(newBook);
             popUp.style.display = "none";
             displayBook(newBook);
@@ -162,7 +176,7 @@ addBook.addEventListener('click', () => {
         } else {
             alert('Fill all fields');
         }
-        console.log(myLibrary);
+        console.log(JSON.parse(localStorage.getItem('libraryArray')));
     });
 
 
