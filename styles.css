@@ -1,39 +1,54 @@
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Titillium Web', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 100px 20px 100px;
+    margin: -10px 100px 20px 100px;
+
+    background-color: #0B0C10;
+    color: #c5c6c7;
+
+
+
 }
 
 .header {
+    margin: 30px 0;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    padding: 10px;
-    margin-top: -20px;
+    align-items: center;
+    /* padding: 10px; */
+
 }
 
 h1 {
-    font-size: 50px;
-    text-shadow: 2px 2px 2px hotpink;
+    font-size: 60px;
+    color: #66fcf1;
+    margin: 0;
+    text-shadow: 2px 2px 2px #1f2833;
 }
 
 #addBook {
-    border-style: none;
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px solid gray;
-    background-color: honeydew;
     align-self: flex-start;
-    margin-top: 50px;
-    margin-right: 3px;    
+    font-size: 16px;
+    margin-top: 30px;
+    margin-right: 30px;
+
+    border-style: none;
+    border-radius: 1px;
+    padding: 10px 25px;
+    border-style: none;
+    background-color: #1f2833;
+    color: #66fcf1;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 .cardsContainer {
     display: flex;
-    gap: 15px;
+    gap: 40px;
     flex-wrap: wrap;
+
+
 }
 
 .card {
@@ -43,23 +58,28 @@ h1 {
     word-wrap: break-word;
     width: 300px;
     /* min-height: 300px; */
-    border: 1px solid goldenrod;
-    box-shadow: 3px 3px 5px gray;
-    border-radius: 10px;
+    border: none;
+    box-shadow: 3px 3px 5px #2b2e3a;
+    border-radius: 0;
     padding: 15px;
+    font-size: 18px;
+
+    background-color: #1f2833;
+
 }
 
 h2 {
     display: flex;
     justify-content: space-between;
-    font-size: 25px;
-    margin: 0;
+    font-size: 30px;
+    margin-top: -10px;
     margin-bottom: 15px;
     padding: 15px;
     text-align: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #0B0C10;
     align-items: center;
     word-break: break-word;
+    color: #66fcf1;
 }
 
 .subheading {
@@ -67,36 +87,108 @@ h2 {
     margin-left: 15px ;
     font-weight: bold;
     text-transform: capitalize;
+
+    color: #66fcf1;
 }
 
 span {
     font-weight: normal;
     text-transform:none;
+    color: #c5c6c7;
 }
 
 #popUp{
     display: none;
     position: fixed;
     left: 40%;
-    top: 10%;
-    border: 2px solid darkblue;
-    background-color: white;
+    top: 5%;
+    background-color: #1f2833;
+    opacity: 100%;
+
 }
 
 .read {
     font-weight: normal;
     font-size: medium;
     text-transform:none;
-    margin-left: 10px;
+
     word-break: normal;
+    align-items: center;
 }
 
 .readYes,
 .readNo {
+    font-size: x-large;
+
     display: inline;
-    margin: 5px
+    margin-top: 5px;
+    margin-left: 5px;
+    border: 1px solid #0B0C10;
+
+
+    border-radius: 30%;
+    padding: 5px;
+
+
+    background-color: transparent;
+    color: #66fcf1;
 }
 
-.deleteBook {
+.deleteBook,
+#submit,
+#popUpCancel {
     margin-top: auto;
+
+
+    border-style: none;
+    border-radius: 1px;
+    padding: 5px;
+    border-style: none;
+    border: 1px solid #0B0C10;
+    background-color: transparent;
+    color: #66fcf1;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+form {
+
+    padding: 0 20px 20px 20px;
+}
+
+label {
+    font-size: 18px;
+}
+
+#formHead {
+    font-size: 30px;
+    text-align: center;
+    margin: 15px;
+
+}
+
+.textbox {
+    border-style: none;
+    background-color: #66fcf1;
+    color: #1f2833;
+    font-size: 16px;
+    margin-bottom: 12px;
+
+}
+
+.footerButtons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+#submit,
+#popUpCancel {
+    padding: 5px 30px;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    background-color: #0B0C10;
+    opacity: 15%;
 }

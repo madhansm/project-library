@@ -18,7 +18,7 @@ const anarchy = {
 
 let cardsContainer = document.querySelector('.cardsContainer');
 
-function createBook(name, author, language, genre, pages, completion) {
+function createBook (name, author, language, genre, pages, completion) {
     this.name = name;
     this.author = author;
     this.language = language;
@@ -63,13 +63,9 @@ function displayBook(book) {
             
             const sub = document.createElement('div');
             sub.classList.add('subheading');
-            const text = document.createTextNode(`${key}: `)
+            const text = document.createTextNode(`${key}:  `)
             sub.append(text);
             const content = document.createElement('span');
-            if (key === 'description') {
-                lineBreak = document.createElement('br');
-                sub.append(lineBreak);
-            }
             content.append(`${book[key]}`);
             sub.appendChild(content);
             card.appendChild(sub);
@@ -130,7 +126,6 @@ function changeToYes() {
 
 myLibrary = JSON.parse(localStorage.getItem('libraryArray'));
 if (myLibrary === null){
-    console.log('here');
     myLibrary = [];
 }
 
@@ -152,6 +147,7 @@ function makeEmpty() {
 
 addBook.addEventListener('click', () => {
     popUp.style.display="block";
+    document.getElementById('overlay').classList.add('overlay');
     
 });
 
@@ -174,21 +170,25 @@ addBook.addEventListener('click', () => {
             popUp.style.display = "none";
             displayBook(newBook);
             makeEmpty();
+            document.getElementById('overlay').classList.remove('overlay');
         } else {
             alert('Fill all fields');
         }
+        
         console.log(JSON.parse(localStorage.getItem('libraryArray')));
     });
 
 let popUpCancel = document.getElementById('popUpCancel');
 popUpCancel.addEventListener('click', () => {
-    popUp.style.display = 'none'
+    popUp.style.display = 'none';
+    document.getElementById('overlay').classList.remove('overlay');
     makeEmpty();
 })
 
 window.addEventListener('keydown', function(e) {
     if (e.key == "Escape") {
-        popUp.style.display = 'none'
+        popUp.style.display = 'none';
+        document.getElementById('overlay').classList.remove('overlay');
         makeEmpty();
     }
   });
