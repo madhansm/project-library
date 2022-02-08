@@ -18,13 +18,15 @@ const anarchy = {
 
 let cardsContainer = document.querySelector('.cardsContainer');
 
-function createBook (name, author, language, genre, pages, completion) {
-    this.name = name;
-    this.author = author;
-    this.language = language;
-    this.genre = genre;
-    this.pages = pages;
-    this.completion = completion;
+class createBook  {
+    constructor(name, author, language, genre, pages, completion) {
+        this.name = name;
+        this.author = author;
+        this.language = language;
+        this.genre = genre;
+        this.pages = pages;
+        this.completion = completion;
+    }
 }
 
 function displayBook(book) {
